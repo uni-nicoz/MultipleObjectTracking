@@ -1,0 +1,104 @@
+
+<html>
+<head>
+<title> Hand Segmentation</title>
+<style>
+<!--
+body{
+font-family: 'Trebuchet MS', Verdana;
+}
+p{ 
+font-family: 'Trebuchet MS', Times;
+margin: 10px 10px 15px 20px;
+}
+h3{
+margin: 5px;
+}
+h2{
+margin: 10px;
+}
+h1{
+margin: 10px 0px 0px 20px;
+}
+div.main-body{
+align:center;
+margin: 30px;
+}
+hr{
+margin:20px 0px 20px 0px;
+}
+-->
+</style>
+</head>
+
+<body>
+<center>
+<a href="http://www.bu.edu"><img border="0" src="http://www.cs.bu.edu/fac/betke/images/bu-logo.gif"
+width="119" height="120"></a>
+</center>
+
+<h1>HW4 Hand Segmentation</h1>
+<p> 
+ CS 585 HW 4 Hand Segmentation<br>
+ Yian Zhao <br>
+ Teammate: Ziang Leng <br>
+ 31 Oct 2018
+</p>
+
+<div class="main-body">
+<hr>
+<h2> Problem Definition </h2>
+<p>
+For this project, we need to ddevelop an algorithm to identify the pianist's hands from a sequence of video frames in which a person is playing the piano with both hands. Portions of the hands are sometimes in deep shadow, which creates a challenging imaging situation.
+</p>
+
+<hr>
+<h2> Method and Implementation </h2>
+<p>Firstly, we do a strict skin detection to make a binary image with only skin-color objects left white, which are mainly the piano, part of head and two hands. Then we do the vertical projection. There are gaps between blocks of white pixels. Between piano and body parts, the gap will be particularly large and we name the column as k. We just swipe all of the pixels left to k column to black. We do the same to head which is right to the both hands. When we are left with two hands, which are two connected components, we draw bounding box around them.</p>
+
+<p>
+Functions:<br>
+Skin Detection-- void mySkinDetect(Mat& src, Mat& dst) <br>
+Projection and Process Pixels and Mark Hands -- void check(Mat& image, Mat& image0) <br>
+</p>
+
+
+<hr>
+<h2>Experiments</h2>
+<p>Evaluation matrix: accurate segementation of hands</p>
+1. When the hands are moving apart, the segementation works well<br>
+2. When the hands come near to each other and even overlap, the algorithm still performs really well
+</p>
+<p>In general, the algorithms work very accurately in each frame<br>
+</p>
+
+
+<hr>
+<h2> Results</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7t8NnkpcK6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><hr>
+
+<h2> Discussion </h2>
+<p>
+Strengths: Our algorithm did well in all the frames<br>
+Limitations: There are still quite a bit limitations as our segementation is set according to this particular video. Only when the sky view is took and the light condition is good, we can detect the pianist' hands. Also, if the video is not about playing piano, due to the special segementation ways, the algorithm will not work.<br>
+Potential future works: If we can try other method so that the algorithm can apply to more situations</p>
+
+
+<hr>
+<h2> Conclusions </h2>
+
+<p>
+In conclusion, our algorithms works for all the frames, detecting both moving hands.</p>
+
+
+<hr>
+<h2> Credits and Bibliography </h2>
+<p>
+Joint work and discussions with Ziang Leng.</p>
+<hr>
+</div>
+</body>
+
+
+
+</html>
